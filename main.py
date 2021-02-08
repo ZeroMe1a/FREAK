@@ -1,7 +1,7 @@
 from core.fractions import *
 from core.misc import *
 
-# may god have mercy on me
+# may god have mercy on my shitty code
 
 # colors avaiable:
 
