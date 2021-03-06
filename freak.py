@@ -1,29 +1,25 @@
 from core.fractions import *
 from core.misc import *
-
-# may god have mercy on my shitty code
-
-# colors avaiable:
-
-# Fore: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
-# Back: BLACK, RED, GREEN, YELLOW, BLUE, MAGENTA, CYAN, WHITE, RESET.
-# Style: DIM, NORMAL, BRIGHT, RESET_ALL
-
-# ------------------------------------------------------
+from core.io import get_fractions
+from time import sleep
 
 init(autoreset=True)
 
-# ------------------------------------------------------
-
-
-
+# TODO: separar essas funções pra deixar o
+#		arquivo main bem organizado.
 def opt1():
 	cls()
 	print(title.substitute(sub='Adding Fractions'))
 
-
-	f1 = list(map(int, input(Fore.GREEN+'Fraction 1: ').split(' '))) 
-	f2 = list(map(int, input(Fore.GREEN+'Fraction 2: ').split(' ')))
+	fractions = get_fractions()
+	if fractions == -1:
+		cls()
+		print("Don't insert strings, insert integers.")
+		sleep(2)
+		main_menu()
+	
+	f1 = fractions[0]
+	f2 = fractions[1]
 
 	r = add(f1, f2)
 	s = simp([r[0], r[1]])
@@ -41,9 +37,15 @@ def opt2():
 	cls()
 	print(title.substitute(sub='Substracting Fractions'))
 
-	f1 = list(map(int, input(Fore.GREEN+'Fraction 1: ').split(' '))) 
-	f2 = list(map(int, input(Fore.GREEN+'Fraction 2: ').split(' ')))
-
+	fractions = get_fractions()
+	if fractions == -1:
+		cls()
+		print("Don't insert strings, insert integers.")
+		sleep(2)
+		main_menu()
+	
+	f1 = fractions[0]
+	f2 = fractions[1]
 	r = sub(f1, f2)
 	s = simp([r[0], r[1]])
 
@@ -59,9 +61,15 @@ def opt3():
 	cls()
 	print(title.substitute(sub='Multiplying Fractions'))
 
-	f1 = list(map(int, input(Fore.GREEN+'Fraction 1: ').split(' '))) 
-	f2 = list(map(int, input(Fore.GREEN+'Fraction 2: ').split(' ')))
-
+	fractions = get_fractions()
+	if fractions == -1:
+		cls()
+		print("Don't insert strings, insert integers.")
+		sleep(2)
+		main_menu()
+	
+	f1 = fractions[0]
+	f2 = fractions[1]
 	r = mul(f1, f2)
 	s = simp([r[0], r[1]])
 
@@ -71,11 +79,6 @@ def opt3():
 
 	input(Fore.GREEN+'Press enter to continue...')
 	main_menu()
-
-
-
-# ------------------------------------------------------
-
 
 
 def main_menu():
@@ -100,8 +103,5 @@ def main_menu():
 	else:
 		main_menu()
 
-
-
-# ------------------------------------------------------
 
 main_menu()

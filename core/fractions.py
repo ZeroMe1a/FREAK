@@ -1,6 +1,7 @@
 from math import gcd, lcm
 from time import perf_counter_ns as counter
 
+
 def simp(f):
 
 	t = counter()
@@ -11,6 +12,7 @@ def simp(f):
 	f[1] = f[1] // g
 
 	return [f[0], f[1], counter()-t]
+
 
 def add(f1, f2):
 
@@ -26,6 +28,7 @@ def add(f1, f2):
 		f2[0] = mmc//f2[1]*f2[0]
 		
 		return [f1[0]+f2[0], mmc, counter()-t]
+
 
 def sub(f1, f2):
 
@@ -49,6 +52,7 @@ def sub(f1, f2):
 			return [1, mmc, counter()-t]
 		else:
 			return [max(f1[0], f2[0]) - min(f1[0], f2[0]), mmc, counter()-t]
+
 
 def mul(f1, f2):
 	t = counter()
