@@ -17,7 +17,7 @@ All documentation process will start when the project is minimally solid.
 ## About the Changelog
 
 All the big changes/features implementated will be documented on CHANGELOG, thanks
-for all the peaple who collaborated with the project until now.
+for all the people who collaborated with the project until now.
 
 ## Features (implementated and under development)
 
@@ -52,5 +52,5 @@ for all the peaple who collaborated with the project until now.
 		- [ ] Automatic solve of a system
 
 ### connect with the programmers
-### - arthur: @Zero_Me1a on twitter
-### - mauro: [mail me](mailto:mauroodesenvolvedor@gmail.com)
+### - ZeroMeia: @Zero_Me1a on twitter
+### - MauroTheCreator: [mail me](mailto:mauroodesenvolvedor@gmail.com)
