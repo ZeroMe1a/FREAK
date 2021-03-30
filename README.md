@@ -1,13 +1,13 @@
 # FREAK
 ## About the project
 
-FREAK is a Python command line calculator aimed to help you at school. Fractions,
+FREAK is a Python CLI calculator aimed to help you at school. Fractions,
 Geometry, Functions, Equations and all that boring stuff that you probably don't
 like in mathematics.
 
 ## About the creator
 
-I like make cool shit with python <br>
+I like to make cool shit with python <br>
 Twitter: [@Zero_Me1a](https://twitter.com/Zero_Me1a)
 
 ## About the documentation
@@ -16,8 +16,8 @@ All documentation process will start when the project is minimally solid.
 
 ## About the Changelog
 
-All the big changes/features implementated will be documented on CHANGELOG, thanks
-for all the peaple who collaborated with the project until now.
+All the big changes/features implementated will be documented on the CHANGELOG, thanks
+for all the people who collaborated with the project until now.
 
 ## Features (implementated and under development)
 
