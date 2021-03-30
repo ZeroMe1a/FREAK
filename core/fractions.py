@@ -13,7 +13,8 @@ class Fractions:
     def simp(self, den: int, num: int) -> list:
         """
         Simplify fractions
-        """        
+        """
+        perf =  self.time.perf_counter()
 
         simplified = list()
 
@@ -24,6 +25,10 @@ class Fractions:
                 den -= gcd
                 num -= gcd
             else:
-                break
-        return simplified
+                perf = self.time.perf_counter()
+                return [simplified, perf]
+
+        perf = self.time.perf_counter()
+
+        return [[den, num], perf]
 
