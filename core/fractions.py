@@ -1,59 +1,79 @@
-from math import gcd, lcm
-from time import perf_counter_ns as counter
+"""Fraction data type implementation."""
 
 
-def simp(f):
+class Fraction:
+    """
+    Fraction data type.
 
-	t = counter()
+    num -- fraction numerator
+    den -- fraction denominator (den != 0)
+    """
 
-	g = gcd(f[0], f[1])
-
-	f[0] = f[0] // g
-	f[1] = f[1] // g
-
-	return [f[0], f[1], counter()-t]
-
-
-def add(f1, f2):
-
-	t = counter()
-
-	if f1[1] == f2[1]:
-		return [f1[0]+f2[0], f1[1], counter()-t]
-	
-	else:
-		mmc = lcm(f1[1], f2[1])
-
-		f1[0] = mmc//f1[1]*f1[0]
-		f2[0] = mmc//f2[1]*f2[0]
-		
-		return [f1[0]+f2[0], mmc, counter()-t]
+    def __init__(self, num: int, den: int):
+        """__init__ bound method for fractions."""
+        if den == 0:
+            raise ValueError("Denominator must be different from 0.")
+        self.num = num
+        self.den = den
+        self.__math = __import__("math")
 
 
-def sub(f1, f2):
-
-	t = counter()
-
-	if f1[1] == f2[1]:
-
-		if max(f1[0], f2[0]) - min(f1[0], f2[0]) <= 0:
-			return [1, f1[1], counter()-t]
-
-		else:
-			return [max(f1[0], f2[0])-min(f1[0], f2[0]), f1[1], counter()-t]
-
-	elif f1[1] != f2[1]:
-		mmc = lcm(f1[1], f2[1])
-
-		f1[0] = mmc//f1[1]*f1[0]
-		f2[0] = mmc//f2[1]*f2[0]
-
-		if max(f1[0], f2[0]) - min(f1[0], f2[0]) <= 0:
-			return [1, mmc, counter()-t]
-		else:
-			return [max(f1[0], f2[0]) - min(f1[0], f2[0]), mmc, counter()-t]
+    def __mul__(self, fraction):
+        """__mul__ bound method for fractions."""
+        return Fraction(self.num * fraction.num,
+                        self.den * fraction.den)
 
 
-def mul(f1, f2):
-	t = counter()
-	return [f1[0]*f2[0], f1[1]*f2[1], counter()-t]
+    def __truediv__(self, fraction):
+        """__truediv__ bound method for fractions."""
+        return Fraction(self.num * fraction.den,
+                        self.den * fraction.num)
+
+
+    def __add__(self, fraction):
+        """__add__ bound method for fractions."""
+        if self.den == fraction.den:
+            return Fraction(self.num + fraction.num,
+                            self.den)
+        else:
+            lcm = self.__math.lcm(self.den, fraction.den)
+            return Fraction(
+                        ((lcm / self.den) * self.num) + ((lcm / fraction.den) * fraction.den),
+                        lcm
+                    )
+
+
+    def __sub__(self, fraction):
+        """__sub__ bound method for fractions."""
+        if self.den == fraction.den:
+            return Fraction(self.num - fraction.num,
+                            self.den)
+        else:
+            lcm = self.__math.lcm(self.den, fraction.den)
+            return Fraction(
+                        ((lcm / self.den) * self.num) - ((lcm / fraction.den) * fraction.num),
+                        lcm
+                    )
+
+
+    def __eq__(self, fraction):
+        """__eq__ bound method for fractions."""
+        return True if (self.simplify().num == fraction.simplify().num
+                    and self.simplify().den == fraction.simplify().den) else False
+
+
+    def __repr__(self):
+            """__repr__ bound method for fractions."""
+            return f"""Fraction(num={self.num}, den={self.den})"""
+
+
+    def simplify(self):
+        """Simplify the fraction object."""
+        return Fraction(self.num / self.__math.gcd(int(self.num), int(self.den)),
+                        self.den / self.__math.gcd(int(self.num), int(self.den)))
+
+
+    def to_ratio(self):
+        """Rational fraction representation."""
+        return self.num / self.den
+
