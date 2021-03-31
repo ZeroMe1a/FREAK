@@ -1,14 +1,18 @@
-# TODO: Implementar plus, minus, div e operadores de comparação
+"""Fraction data type implementation."""
+
+
 class Fraction:
     """
     Fraction data type.
 
     num -- fraction numerator
-    den -- fraction denominator
+    den -- fraction denominator (den != 0)
     """
 
     def __init__(self, num: int, den: int):
         """__init__ bound method for fractions."""
+        if den == 0:
+            raise ValueError("Denominator must be different from 0.")
         self.num = num
         self.den = den
         self.__math = __import__("math")
@@ -33,6 +37,11 @@ class Fraction:
 
     def simplify(self):
         """Simplify the fraction object."""
-        return Fraction(self.num / self.__math.gcd(self.num, self.den),
-                        self.den / self.__math.gcd(self.num, self.den))
+        return Fraction(self.num / self.__math.gcd(int(self.num), int(self.den)),
+                        self.den / self.__math.gcd(int(self.num), int(self.den)))
+
+
+    def to_ratio(self):
+        """Rational fraction representation."""
+        return self.num / self.den
 
