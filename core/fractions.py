@@ -24,6 +24,38 @@ class Fraction:
                         self.den * fraction.den)
 
 
+    def __truediv__(self, fraction):
+        """__truediv__ bound method for fractions."""
+        return Fraction(self.num * fraction.den,
+                        self.den * fraction.num)
+
+
+    def __add__(self, fraction):
+        """__add__ bound method for fractions."""
+        if self.den == fraction.den:
+            return Fraction(self.num + fraction.num,
+                            self.den)
+        else:
+            lcm = self.__math.lcm(self.den, fraction.den)
+            return Fraction(
+                        ((lcm / self.den) * self.num) + ((lcm / fraction.den) * fraction.den),
+                        lcm
+                    )
+
+
+    def __sub__(self, fraction):
+        """__sub__ bound method for fractions."""
+        if self.den == fraction.den:
+            return Fraction(self.num - fraction.num,
+                            self.den)
+        else:
+            lcm = self.__math.lcm(self.den, fraction.den)
+            return Fraction(
+                        ((lcm / self.den) * self.num) - ((lcm / fraction.den) * fraction.num),
+                        lcm
+                    )
+
+
     def __eq__(self, fraction):
         """__eq__ bound method for fractions."""
         return True if (self.simplify().num == fraction.simplify().num
